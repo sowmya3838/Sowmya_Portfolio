@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sowmya | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #1a1a2e;
+      --secondary: #16213e;
+      --accent: #8d39fa;
+      --text: #e6e6e6;
+      --card-bg: #0f3460;
+      --highlight: #533d8b;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--primary);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      background-color: var(--secondary);
+      padding: 15px 30px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    nav.scrolled {
+      padding: 10px 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      background: rgba(141, 57, 250, 0.1);
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 100px 20px;
+      min-height: 100vh;
+      background-color: var(--primary);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--accent);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--highlight));
+      border-radius: 3px;
+    }
+
+    /* Home Section */
+    #home {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 90%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .home-content {
+      flex: 1;
+      padding-right: 50px;
+    }
+
+    .home-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .home-photo {
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      border: 5px solid var(--accent);
+      object-fit: cover;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
+    }
+
+    .home-photo:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .home-name {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      transition: all 0.3s ease;
+    }
+
+    .home-name span {
+      color: var(--accent);
+    }
+
+    .home-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      transition: all 0.3s ease;
+    }
+
+    .home-desc {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-resume {
+      display: inline-block;
+      padding: 12px 30px;
+      background: var(--accent);
+      color: var(--text);
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: 2px solid var(--accent);
+    }
+
+    .btn-resume:hover {
+      background: transparent;
+      color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(141, 57, 250, 0.4);
+    }
+
+    /* Background Circles */
+    .home-bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(141, 57, 250, 0.1);
+      animation: float 6s infinite ease-in-out;
+    }
+
+    .circle-1 {
+      width: 300px;
+      height: 300px;
+      top: -100px;
+      left: -100px;
+    }
+
+    .circle-2 {
+      width: 200px;
+      height: 200px;
+      bottom: -50px;
+      right: -50px;
+      animation-delay: 1s;
+    }
+
+    .circle-3 {
+      width: 150px;
+      height: 150px;
+      top: 50%;
+      right: 10%;
+      animation-delay: 2s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* Common Card Styles */
+    .card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      border-left: 4px solid var(--accent);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    /* About Section */
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-content p {
+      margin-bottom: 15px;
+      line-height: 1.8;
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+
+    /* Education Section */
+    .edu-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .edu-card h3 {
+      color: var(--accent);
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+      transition: all 0.3s ease;
+    }
+
+    .edu-card p {
+      margin-bottom: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .edu-card p strong {
+      color: var(--accent);
+    }
+
+    /* Skills Section */
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .skill-category {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .skill-category h3 {
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .skill-item {
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .skill-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .skill-icon {
+      font-size: 1.3rem;
+      margin-right: 10px;
+      color: var(--accent);
+      width: 25px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .skill-header span {
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .skills-bar {
+      background: var(--secondary);
+      height: 8px;
+      border-radius: 4px;
+      margin-top: 5px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .skills-bar .fill {
+      background: linear-gradient(90deg, var(--accent), var(--highlight));
+      height: 100%;
+      border-radius: 4px;
+      position: relative;
+      transition: width 1s ease;
+    }
+
+    .skills-bar .fill::after {
+      content: attr(data-percent);
+      position: absolute;
+      right: 5px;
+      top: -20px;
+      font-size: 0.7rem;
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+
+    /* Certifications Section */
+    .certification {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cert-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      border: 1px solid var(--highlight);
+      transition: all 0.3s ease;
+    }
+
+    .certification:hover .cert-image {
+      transform: scale(1.03);
+    }
+
+    .certification h3 {
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .certification p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+    }
+
+    /* Contact Section */
+    #contact {
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+    }
+
+    .contact-box {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-item {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateX(5px);
+    }
+
+    .contact-icon {
+      font-size: 1.3rem;
+      margin-right: 15px;
+      color: var(--accent);
+      width: 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .contact-box a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .contact-box a:hover {
+      color: var(--text);
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--secondary);
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    /* Common Styles */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .home-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .home-content {
+        padding-right: 0;
+        margin-bottom: 50px;
+      }
+      
+      .home-name {
+        font-size: 2.5rem;
+      }
+      
+      .home-title {
+        font-size: 1.5rem;
+      }
+
+      .home-photo {
+        width: 280px;
+        height: 280px;
+      }
+
+      .section-title {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 12px 20px;
+      }
+
+      .nav-links {
+        gap: 10px;
+      }
+
+      .nav-links a {
+        font-size: 0.8rem;
+        padding: 5px 8px;
+      }
+
+      section {
+        padding: 80px 20px;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .home-name {
+        font-size: 2.2rem;
+      }
+
+      .home-title {
+        font-size: 1.2rem;
+      }
+
+      .home-desc {
+        font-size: 1rem;
+      }
+
+      .btn-resume {
+        padding: 10px 25px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 576px) {
+      nav {
+        flex-direction: column;
+        padding: 10px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      .home-photo {
+        width: 220px;
+        height: 220px;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="#home" style="color: var(--text); text-decoration: none; font-weight: bold;">Portfolio</a>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section id="home">
+    <div class="home-bg-circle circle-1"></div>
+    <div class="home-bg-circle circle-2"></div>
+    <div class="home-bg-circle circle-3"></div>
+    
+    <div class="home-container">
+      <div class="home-content">
+        <h1 class="home-name">Hi, I'm <span>Sowmya</span></h1>
+        <h2 class="home-title">Electronics & Communication Engineering Student</h2>
+        <p class="home-desc">
+          Passionate about technology, development, and building better digital experiences. 
+          Currently focused on front-end development and electronics. Let's create something amazing!
+        </p>
+        <a href="Sowmya_resume.pdf" download class="btn-resume">
+          <i class="fas fa-download"></i> Download Resume
+        </a>
+      </div>
+
+      <div class="home-image">
+        <img src="IMAGE.jpg" alt="Sowmya" class="home-photo">
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-content card">
+      <p>
+        I'm <strong>Sowmya</strong>, an enthusiastic Electronics and Communication Engineering student 
+        with a strong passion for technology, innovation, and web development.
+      </p>
+      <p>
+        I'm focused on front-end development, electronics, and programming. I'm proficient with 
+        HTML, CSS, JavaScript, Python, and version control using Git and GitHub. I'm constantly 
+        expanding my skill set through online courses and personal projects.
+      </p>
+      <p>
+        Beyond technical skills, I'm a fast learner, a strong communicator, and a team player. 
+        I believe in continuous learning and staying updated with the latest industry trends.
+      </p>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2 class="section-title">My Education</h2>
+    <div class="cards">
+      <div class="edu-card card">
+        <h3>B.Tech</h3>
+        <p><strong>College:</strong> SVR Engineering College</p>
+        <p><strong>Branch:</strong> Electronics & Communication Engineering</p>
+        <p><strong>Years:</strong> 2023 – 2026</p>
+        <p><strong>CGPA:</strong> 8.5/10 (Current)</p>
+      </div>
+      <div class="edu-card card">
+        <h3>Diploma</h3>
+        <p><strong>College:</strong> Brindavan Institute of Technology</p>
+        <p><strong>Branch:</strong> Electronics & Communication Engineering</p>
+        <p><strong>Years:</strong> 2020 – 2023</p>
+        <p><strong>Percentage:</strong> 85%</p>
+      </div>
+      <div class="edu-card card">
+        <h3>SSC</h3>
+        <p><strong>School:</strong> VVS High School</p>
+        <p><strong>Completed:</strong> 2020</p>
+        <p><strong>Percentage:</strong> 92%</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2 class="section-title">My Skills</h2>
+    <div class="skills-container">
+      <div class="skill-category card">
+        <h3>Technical Skills</h3>
+        <div class="skill-item">
+          <div class="skill-header">
+            <i class="fab fa-html5 skill-icon"></i>
+            <span>HTML</span>
+          </div>
+          <div class="skills-bar"><div class="fill" style="width: 95%;" data-percent="95%"></div></div>
+        </div>
+        
+        <div class="skill-item">
+          <div class="skill-header">
+            <i class="fab fa-css3-alt skill-icon"></i>
+            <span>CSS</span>
+          </div>
+          <div class="skills-bar"><div class="fill" style="width: 90%;" data-percent="90%"></div></div>
+        </div>
+        
+        <div class="skill-item">
+          <div class="skill-header">
+            <i class="fab fa-js skill-icon"></i>
+            <span>JavaScript</span>
+          </div>
+          <div class="skills-bar"><div class="fill" style="width: 70%;" data-percent="70%"></div></div>
+        </div>
+        
+        <div class="skill-item">
+          <div class="skill-header">
+            <i class="fab fa-python skill-icon"></i>
+            <span>Python</span>
+          </div>
+          <div class="skills-bar"><div class="fill" style="width: 65%;" data-percent="65%"></div></div>
+        </div>
+        
+        <div class="skill-item">
+          <div class="skill-header">
+            <i class="fab fa-git-alt skill-icon"></i>
+            <span>Git</span>
+          </div>
+          <div class="skills-bar"><div class="fill" style="width: 75%;" data-percent="75%"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-category card">
+        <h3>Soft Skills</h3>
+        <div class="skill-item">
+          <div class="skill-header">
+            <i class="fas fa-comments skill-icon"></i>
+            <span>Communication</span>
+          </div>
+          <div class="skills-bar"><div class="fill" style="width: 90%;" data-percent="90%"></div></div>
+        </div>
+        
+        <div class="skill-item">
+          <div class="skill-header">
+            <i class="fas fa-users skill-icon"></i>
+            <span>Teamwork</span>
+          </div>
+          <div class="skills-bar"><div class="fill" style="width: 85%;" data-percent="85%"></div></div>
+        </div>
+        
+        <div class="skill-item">
+          <div class="skill-header">
+            <i class="fas fa-lightbulb skill-icon"></i>
+            <span>Creativity</span>
+          </div>
+          <div class="skills-bar"><div class="fill" style="width: 80%;" data-percent="80%"></div></div>
+        </div>
+        
+        <div class="skill-item">
+          <div class="skill-header">
+            <i class="fas fa-puzzle-piece skill-icon"></i>
+            <span>Problem Solving</span>
+          </div>
+          <div class="skills-bar"><div class="fill" style="width: 82%;" data-percent="82%"></div></div>
+        </div>
+        
+        <div class="skill-item">
+          <div class="skill-header">
+            <i class="fas fa-clock skill-icon"></i>
+            <span>Time Management</span>
+          </div>
+          <div class="skills-bar"><div class="fill" style="width: 78%;" data-percent="78%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <h2 class="section-title">Certifications</h2>
+    <div class="cards">
+      <div class="certification card">
+        <img src="uipath.jpg" alt="Responsive Web Design Certificate" class="cert-image">
+        <h3>Responsive Web Design</h3>
+        <p><strong>Issued by:</strong> freeCodeCamp</p>
+        <p><strong>Date:</strong> May 2025</p>
+        <p><strong>Skills:</strong> HTML, CSS, Accessibility, Responsive Design</p>
+      </div>
+      
+      <div class="certification card">
+        <img src="intern.jpg" alt="Python for Beginners Certificate" class="cert-image">
+        <h3>Python for Beginners</h3>
+        <p><strong>Issued by:</strong> Coursera</p>
+        <p><strong>Date:</strong> April 2025</p>
+        <p><strong>Skills:</strong> Python, Data Structures, Algorithms</p>
+      </div>
+      
+      <div class="certification card">
+        <img src="uipath.jpg" alt="Modern CSS Techniques Certificate" class="cert-image">
+        <h3>Modern CSS Techniques</h3>
+        <p><strong>Issued by:</strong> Frontend Masters</p>
+        <p><strong>Date:</strong> March 2025</p>
+        <p><strong>Skills:</strong> CSS Grid, Flexbox, Animations, Variables</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <div class="contact-box card">
+      <div class="contact-item">
+        <i class="fas fa-envelope contact-icon"></i>
+        <a href="mailto:sowmyaadisowmya@gmail.com">sowmyaadisowmya@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-phone contact-icon"></i>
+        <span>+91 9346648938</span>
+      </div>
+      <div class="contact-item">
+        <i class="fab fa-github contact-icon"></i>
+        <a href="https://github.com/sowmya3838">github.com/sowmya3838</a>
+      </div>
+      <div class="contact-item">
+        <i class="fab fa-linkedin contact-icon"></i>
+        <a href="https://www.linkedin.com/in/sowmya-thota-balija-958828335/">linkedin.com/in/sowmya-thota-balija</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-map-marker-alt contact-icon"></i>
+        <span>Nandyal, Andhra Pradesh, India</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Sowmya | All Rights Reserved</p>
+    <p>Designed with <i class="fas fa-heart" style="color: #ff4d4d;"></i> by Sowmya</p>
+  </footer>
+</body>
+</html>
